@@ -20,6 +20,9 @@ namespace ConsoleApp5
             //Student raitingStudents = new Student();
 
             //------------CONSTRUCTORS------------
+            /// <summary>
+            /// Конструктор без параметров который инициализирует группу студентов.
+            /// </summary>
             public Group()
             {
 
@@ -32,14 +35,18 @@ namespace ConsoleApp5
                     (students[i] as Student).SetExam();
                 }
             }
+            /// <summary>
+            /// Конструктор который позволяет изменить кол-во студентов в группе.
+            /// <param name="x">Количество,которое хотите задать</param>
+            /// </summary>
             public Group(int x)
             {
                 countStudents = x;
             }
-            public Group(ArrayList copyStudent)
-            {
-                this.students = copyStudent;
-            }
+            /// <summary>
+            /// Конструктор который позволяет скопировать с одной группы всех студентов в данную.
+            /// <param name="g">Группа с которой будем копировать</param>
+            /// </summary>
             public Group(Group g)
             {
                 countStudents = g.GetCountStudents();
@@ -49,41 +56,76 @@ namespace ConsoleApp5
                 this.numberSemester = g.numberSemester;
             }
             //------------SETTERS------------
+            /// <summary>
+            /// Этот метод меняет количество студентов.
+            /// </summary>
+            /// <param name="x">Количество,которое хотите задать</param>
+            
             public void SetCountStudents(int x)
             {
                 countStudents = x;
             }
+            /// <summary>
+            /// Этот метод меняет название группы.
+            /// </summary>
+            /// <param name="nameGroup">Задать название группы</param>
             public void SetNameGroup(string nameGroup)
             {
                 this.nameGroup = nameGroup;
             }
+            /// <summary>
+            /// Этот метод меняет специализацию группы.
+            /// </summary>
+            /// <param name="nameSpecalizationGroup">Задать название специализации</param>
             public void SetNameSpecalizationGroup(string nameSpecalizationGroup)
             {
                 this.nameSpecalizationGroup = nameSpecalizationGroup;
             }
+            /// <summary>
+            /// Этот метод меняет номер семестра.
+            /// </summary>
+            /// <param name="numberSemester">Задать номер семестра</param>
             public void SetNumberSemester(int numberSemester)
             {
                 this.numberSemester = numberSemester;
             }
             //------------GETTERS------------
+            /// <summary>
+            /// Этот метод возвращает кол-во студентов.
+            /// </summary>
             public int GetCountStudents()
             {
                 return countStudents;
             }
-            public string SetNameGroup()
+            /// <summary>
+            /// Этот метод возвращает кол-во студентов.
+            /// </summary>
+            public string GetNameGroup()
             {
                 return nameGroup;
             }
-            public string SetNameSpecalizationGroup()
+            /// <summary>
+            /// Этот метод возвращает название специализации группы.
+            /// </summary>
+            public string GetNameSpecalizationGroup()
             {
                 return nameSpecalizationGroup;
             }
-            public int SetNumberSemester()
+            /// <summary>
+            /// Этот метод возвращает номер семестра группы.
+            /// </summary>
+            public int GetNumberSemester()
             {
                 return numberSemester;
             }
 
             //------------METHODS------------
+            /// <summary>
+            /// Этот метод добавляет студента в группу.
+            /// </summary>
+            /// <param name="surname">Фамилия</param>
+            /// <param name="name">Имя</param>
+            /// <param name="age">Возраст</param>
             public void AddSudent(string surname, string name, int age)
             {
                 students.Add(new Student());
@@ -92,17 +134,35 @@ namespace ConsoleApp5
                 (students[students.Count] as Student).SetAge(random.Next(16, 50));
                 (students[students.Count] as Student).SetExam();
             }
+            /// <summary>
+            /// Этот метод редактирует студента в группе.
+            /// </summary>
+            /// <param name="surname">Фамилия</param>
+            /// <param name="name">Имя</param>
+            /// <param name="age">Возраст</param>
+            /// <param name="x">Число которое выбирает студента для редактирования(по списку)</param>
             public void EditStudent(int x, string surname, string name, int age)
             {
                 (students[x - 1] as Student).SetName(name);
                 (students[x - 1] as Student).SetSurname(surname);
                 (students[x - 1] as Student).SetAge(age);
             }
+            /// <summary>
+            /// Этот метод редактирует группу.
+            /// </summary>
+            /// <param name="nameGroup">Имя группы</param>
+            /// <param name="nameSpecalizationGroup">Имя специализации группы</param>
             public void EditGroup(string nameGroup, string nameSpecalizationGroup)
             {
                 this.nameGroup = nameGroup;
                 this.nameSpecalizationGroup = nameSpecalizationGroup;
             }
+            /// <summary>
+            /// Переброска одного студента с одной группы в другую группу(по списку).
+            /// </summary>
+            /// <param name="first">Передача первой группы откуда хотим перевести студента</param>
+            /// <param name="second">То,собственно куда его переводим</param>
+            /// <param name="x">Номер студента в 1 группе по списку</param>
             public void TransferenceStudent(int x, Group first, Group second)
             {
                 second.students[x - 1] = first.students[x - 1];
@@ -119,6 +179,9 @@ namespace ConsoleApp5
             //        }
             //    }
             //}
+            /// <summary>
+            /// Отчисление самого слабого студента по оценкам.
+            /// </summary>
             public void UnsuccessfulStudent()
             {
                 int x = 12;
@@ -143,6 +206,9 @@ namespace ConsoleApp5
                 students.RemoveAt(y);
             }
             //------------PRINT------------
+            /// <summary>
+            /// Показ группы в консоль.
+            /// </summary>
             public void PrintGroup()
             {
                 Console.WriteLine("Nazvanie group: " + nameGroup);
@@ -153,6 +219,9 @@ namespace ConsoleApp5
                 }
                 Console.Write("\n");
             }
+            /// <summary>
+            /// Показ оценок студентов из группы в консоль.
+            /// </summary>
             public void PrintRaitings()
             {
                 for (int i = 0; i < students.Count; i++)
@@ -165,15 +234,18 @@ namespace ConsoleApp5
                     Console.Write("\n");
                 }
             }
+            /// <summary>
+            /// Показ в консоль кто сдал жкзамен,кто - нет.
+            /// </summary>
             public void PrintExams()
             {
                 for (int i = 0; i < countStudents; i++)
                 {
                     Console.Write((i + 1) + ")  ");
                     if ((students[i] as Student).GetExam() == false)
-                        Console.Write("NE SDAL" + (students[i] as Student).GetExam());
+                        Console.Write("NE SDAL");
                     else
-                        Console.Write("SDAL" + (students[i] as Student).GetExam());
+                        Console.Write("SDAL");
                     Console.Write("\n");
                 }
             }
@@ -191,7 +263,7 @@ namespace ConsoleApp5
             //g.PrintRaitings();
             //g1.TransferenceStudent(3, g, g1);
             //g1.PrintGroup();
-            g.EliminationStudent();
+            //g.EliminationStudent();
             //g.UnsuccessfulStudent();
             g.PrintGroup();
         }
