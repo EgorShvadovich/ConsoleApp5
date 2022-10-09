@@ -60,7 +60,7 @@ namespace ConsoleApp5
             /// Этот метод меняет количество студентов.
             /// </summary>
             /// <param name="x">Количество,которое хотите задать</param>
-            
+
             public void SetCountStudents(int x)
             {
                 countStudents = x;
@@ -204,6 +204,18 @@ namespace ConsoleApp5
                     }
                 }
                 students.RemoveAt(y);
+            }
+            public static bool operator ==(Group grp, Group grp1)
+            {
+                if (grp.students.Count == grp1.students.Count)
+                    return true;
+                else return false;
+            }
+            public static bool operator !=(Group grp, Group grp1)
+            {
+                if (grp.students.Count != grp1.students.Count)
+                    return true;
+                else return false;
             }
             //------------PRINT------------
             /// <summary>

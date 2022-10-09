@@ -13,27 +13,27 @@
         private int phoneNumber;
 
         public int[] dzArr = new int[10];
-        
+
         Random random = new Random();
 
         //------------CONSTRUCTORS------------
         /// <summary>
         /// Конструктор без параметров который рандомным образом заполняет успеваемость студента.
         /// </summary>
-       public Student()
+        public Student()
         {
             for (int i = 0; i < dzArr.Length; i++)
             {
                 dzArr[i] = random.Next(2, 12);
             }
 
-            
+
         }
         /// <summary>
         /// Конструктор который позволяет поменять имя студенту
         /// </summary>
         /// <param name="name">Передача имени</param>
-       public Student(string name)
+        public Student(string name)
         {
             this.name = name;
         }
@@ -149,14 +149,14 @@
         /// </summary>
         public string GetAdress()
         {
-           return address;
+            return address;
         }
         /// <summary>
         /// Метод который возвращает телефонный номер студента
         /// </summary>
         public int GetPhoneNumber()
         {
-           return phoneNumber;
+            return phoneNumber;
         }
         /// <summary>
         /// Метод который говорит о том сдал студент экзамен или нет
@@ -165,6 +165,35 @@
         {
             return exam;
         }
-        
+
+        public double SumDz()
+        {
+            return dzArr.Sum();
+        }
+
+        public static bool operator ==(Student stud, Student stud1)
+        {
+            if (stud.age == stud1.age && stud.name == stud1.name && stud.surname == stud1.surname)
+                return true;
+            else return false;
+        }
+        public static bool operator !=(Student stud, Student stud1)
+        {
+            if (stud.age != stud1.age && stud.name != stud1.name && stud.surname != stud1.surname)
+                return true;
+            else return false;
+        }
+        public static double operator >(Student stud, Student stud1)
+        {
+            if (stud.SumDz() > stud1.SumDz())
+                return stud.SumDz();
+            else return stud1.SumDz();
+        }
+        public static double operator <(Student stud, Student stud1)
+        {
+            if (stud.SumDz() < stud1.SumDz())
+                return stud.SumDz();
+            else return stud1.SumDz();
+        }
     }
 }
